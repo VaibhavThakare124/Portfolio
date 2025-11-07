@@ -1,0 +1,51 @@
+// AnimatedLine.js
+import React, { useEffect, useRef } from 'react';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const AnimatedLine = ({ text }) => {
+    const textRef = useRef(null);
+
+    useEffect(() => {
+        const textElement = textRef.current;
+        if (!textElement) return;
+
+        // Split text into spans
+        const letters = text.split('');
+        textElement.innerHTML = letters.map(letter =>
+            `<span style="display:inline-block; color: #666666; opacity: 0.6; filter: blur(1.5px); transform: translateY(20px);">${letter === ' ' ? '&nbsp;' : letter}</span>`
+        ).join('');
+
+        const spans = textElement.querySelectorAll('span');
+
+        gsap.to(spans, {
+            scrollTrigger: {
+                trigger: textElement,
+                start: "top 80%",
+                end: "bottom 70%",
+                scrub: true,
+                // markers: true,
+            },
+            color: "#ffffff",
+            opacity: 1,
+            filter: "blur(0px)",
+            y: 0,
+            stagger: {
+                each: 0.035,
+                ease: "power2.out",
+            },
+            duration: 1.2,
+            ease: "power2.out",
+        });
+    }, [text]);
+
+    return (
+        <span ref={textRef} className="block text-[#666666]">
+            {text}
+        </span>
+    );
+};
+
+export default AnimatedLine;

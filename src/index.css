@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: font1;
+  src: url(../fonts/Font1.woff2);
+}
+
+@font-face {
+  font-family: font2;
+  src: url(../fonts/Font2.woff2);
+}
+
+@font-face {
+  font-family: font3;
+  src: url(../fonts/Font3.woff2);
+}
+
+@font-face {
+  font-family: font4;
+  src: url(../fonts/Font4.woff2);
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  cursor: none;
+}
+
+/* body {
+  height: 100%;
+  width: 100%;
+  background-image: url('./assets/BGImage.png');
+  background-size: cover;
+  background-position: center;
+} */
+
+
+body {
+
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden  ;
+  
+  background-color: #0b0b0f; /* Fallback color */
+
+  background-image: repeating-conic-gradient(
+    #0F0F0F 0% 25%,      /* Color 1 from 0% to 25% */
+    #000000 25% 50%      /* Color 2 from 25% to 50% */
+  );
+
+  /* The size of each square */
+  background-size: 8px 8px;
+
+  display: flex;
+
+  color: white;
+  
+}
+
+
+#cursor {
+  position: fixed;
+  width: 1.25rem; /* w-5 */
+  height: 1.25rem; /* h-5 */
+  background: #fff; /* bg-white */
+  border-radius: 9999px; /* rounded-full */
+  pointer-events: none;
+  z-index: 100;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+}
