@@ -69,3 +69,40 @@ body {
   mix-blend-mode: difference;
   transform: translate(-50%, -50%);
 }
+
+
+html.has-scroll-smooth {
+  overflow: hidden; 
+}
+
+html.has-scroll-dragging {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; 
+}
+
+.has-scroll-smooth body {
+  overflow: hidden; 
+}
+
+/* Optional: Hide the default scrollbar for a cleaner look */
+.has-scroll-smooth [data-scroll-container] {
+  min-height: 100vh;
+}
+
+/* Optional: Style the custom scrollbar provided by Locomotive */
+.c-scrollbar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 10px;
+  height: 100vh;
+  transform-origin: center right;
+  z-index: 1000;
+}
+.c-scrollbar_thumb {
+  background-color: #555; /* Scrollbar color */
+  border-radius: 10px;
+  margin: 2px;
+}
