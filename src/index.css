@@ -35,26 +35,12 @@
 } */
 
 
-body {
-
+body{
   height: 100%;
   width: 100%;
   overflow-x: hidden  ;
-  
-  background-color: #0b0b0f; /* Fallback color */
-
-  background-image: repeating-conic-gradient(
-    #0F0F0F 0% 25%,      /* Color 1 from 0% to 25% */
-    #000000 25% 50%      /* Color 2 from 25% to 50% */
-  );
-
-  /* The size of each square */
-  background-size: 8px 8px;
-
-  display: flex;
-
+  background-color: black;
   color: white;
-  
 }
 
 

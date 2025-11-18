@@ -5,12 +5,15 @@ import App from './App.jsx'
 import 'remixicon/fonts/remixicon.css'
 import Cursor from './components/common/Cursor.jsx'
 import NavContext from './context/NavContext.jsx'
+import ScrollContainer from './hooks/ScrollContainer.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <NavContext>
-      <Cursor/>
-      <App />
-    </NavContext>
-  </StrictMode>,
+    
+      <NavContext>
+        <Cursor/>
+        <App />
+      </NavContext>
+    
+  </StrictMode>
 )
