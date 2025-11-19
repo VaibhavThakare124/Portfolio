@@ -80,11 +80,11 @@ const Projects = () => {
         ref={textRef}
         className="text-container flex flex-row justify-center gap-[100vh] top-[20vh] items-center px-20 py-10 w-full z-10"
       >
-        <div className="TopLeft flex flex-col font-[font1] tracking-[-0.03em] leading-20 text-[13vh]">
+        <div className="TopLeft flex flex-col font-[font1] font-bold tracking-[-0.03em] leading-20 text-[13vh]">
           <h1>Featured</h1>
           <h1>Projects</h1>
         </div>
-        <div className="TopRight font-[font4] text-[23px] w-[20%] leading-7">
+        <div className="TopRight font-[font4] font-bold text-[23px] w-[20%] leading-7">
           <p>
             A selection of websites I've crafted — combining clarity, elegance,
             and thoughtful motion.

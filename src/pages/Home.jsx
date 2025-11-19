@@ -5,13 +5,16 @@ const Home = () => {
   return (
     
     <div className='h-screen w-screen  mx-10'>
+      
       <div className="h-screen w-screen flex flex-col justify-center  text-center">
       
-          <div className="absolute top-0 left-0 w-full flex justify-center gap-10 z-50 pointer-events-none">
-            <h1 className="text-[17vw] uppercase font-bold font-[font1] text-[#c93b10] select-none leading-none bg-transparent">
-              Void
-            </h1>
-            <h1 className="text-[17vw] uppercase font-bold font-[font1] text-white select-none leading-none bg-transparent">
+          <div className="absolute top-0 left-0 w-full flex justify-center  z-50 pointer-events-none">
+            <div className="text-[17vw] flex flex-row tracking-tighter uppercase font-bold font-[font1]  select-none leading-none bg-transparent">
+              
+              <h1>Vo</h1>
+              <h1 className='rotate-270 text-[#c93b10]'>id</h1>
+            </div>
+            <h1 className="text-[17vw] uppercase font-bold font-[font1]  select-none leading-none bg-transparent">
               form
             </h1>
           </div>
