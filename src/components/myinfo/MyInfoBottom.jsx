@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
 import myImg from '../../assets/myImg1.png';
 import AnimatedLine from '../common/AnimatedLine';
+import { tr } from 'framer-motion/client';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,39 +17,118 @@ const MyInfoBottom = () => {
     const containerRef = useRef(null);
 
     useGSAP(() => {
-        
-        gsap.to('.text-container', {
-            scale: 0.8,    
-            yPercent: -20, 
-            opacity: 1,    
-            scrollTrigger: {
-                trigger: '.text-container',
-                start: 'top 15%', 
-                end: 'bottom top',
-                scrub: 1,      
-                pin: true,
-                // markers: true,
-                
-            }
-        });
+        // Animate "Behind the Screen" text with smoother animation
+        const textContainer = containerRef.current?.querySelector('.text-container');
+        if (textContainer) {
+            const headings = textContainer.querySelectorAll('h1');
+            gsap.fromTo(headings,
+                { opacity: 0, y: 50, scale: 0.9, filter: "blur(10px)" },
+                {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    filter: "blur(0px)",
+                    duration: 1.5,
+                    ease: "power3.out",
+                    stagger: 0.2,
+                    scrollTrigger: {
+                        trigger: textContainer,
+                        start: 'top 80%',
+                        end: 'top 60%',
+                        scrub: 1.5,
+                    }
+                }
+            );
 
-        
-        gsap.from('.image-container', {
-            y: 200,      
-            opacity: 0,  
-            scrollTrigger: {
-                trigger: '.image-container',
-                start: 'top 85%', 
-                end: 'top 50%',   
-                scrub: 1.5,     
-            }
-        });
+            // Pin and scale animation
+            gsap.to(textContainer, {
+                scale: 0.8,    
+                yPercent: -20, 
+                scrollTrigger: {
+                    trigger: textContainer,
+                    start: 'top 15%', 
+                    end: 'bottom top',
+                    scrub: 1.5,      
+                    pin: true,
+                }
+            });
+        }
 
+        // Animate image container with smoother effect
+        gsap.fromTo('.image-container', 
+            { 
+                y: 200,      
+                opacity: 0,
+                scale: 0.95,
+                filter: "blur(10px)"
+            },
+            {
+                y: 0,
+                opacity: 1,
+                scale: 1,
+                filter: "blur(0px)",
+                scrollTrigger: {
+                    trigger: '.image-container',
+                    start: 'top 85%', 
+                    end: 'top 50%',   
+                    scrub: 1.5,     
+                   
+                }
+            }
+        );
+
+        // Animate info text and button
+        const infoText = containerRef.current?.querySelector('.info-text-container');
+        if (infoText) {
+            const paragraph = infoText.querySelector('p');
+            const button = infoText.querySelector('button');
+            
+            if (paragraph) {
+                gsap.fromTo(paragraph,
+                    { opacity: 0, y: 30, filter: "blur(5px)" },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        filter: "blur(0px)",
+                        duration: 1.2,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: paragraph,
+                            start: 'top 85%',
+                            end: 'top 70%',
+                            scrub: 1,
+                            // markers: true,
+                        }
+                    }
+                );
+            }
+
+            if (button) {
+                gsap.fromTo(button,
+                    { opacity: 0, scale: 0.8, y: 20 },
+                    {
+                        opacity: 1,
+                        scale: 1,
+                        y: 0,
+                        duration: 1,
+                        ease: "back.out(1.7)",
+                        scrollTrigger: {
+                            trigger: button,
+                            start: 'top 90%',
+                            end: 'top 80%',
+                            scrub: 1,
+                        }
+                    }
+                );
+            }
+        }
     }, { scope: containerRef });
 
     return (
         
-        <div ref={containerRef} className='w-screen justify-between items-center'>
+        <div 
+        data-scroll-section
+        ref={containerRef} className='w-screen justify-between items-center'>
             
             
             <div className="top-[10vh] h-full w-screen overflow-hidden flex flex-col gap-[10vh] justify-between items-center relative py-[10vh]">

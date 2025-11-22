@@ -20,12 +20,12 @@ const AnimatedLine = ({ text }) => {
 
         const spans = textElement.querySelectorAll('span');
 
-        gsap.to(spans, {
+        const animation = gsap.to(spans, {
             scrollTrigger: {
                 trigger: textElement,
                 start: "top 80%",
                 end: "bottom 70%",
-                scrub: true,
+                scrub: 1.5, // Smoother scrub
                 // markers: true,
             },
             color: "#ffffff",
@@ -33,12 +33,21 @@ const AnimatedLine = ({ text }) => {
             filter: "blur(0px)",
             y: 0,
             stagger: {
-                each: 0.035,
+                each: 0.02, // Faster stagger for smoother effect
                 ease: "power2.out",
             },
-            duration: 1.2,
-            ease: "power2.out",
+            duration: 1.5,
+            ease: "power3.out", // Smoother easing
         });
+
+        // Store animation reference for cleanup
+        textElement._gsapAnimation = animation;
+
+        return () => {
+            if (textElement._gsapAnimation?.scrollTrigger) {
+                textElement._gsapAnimation.scrollTrigger.kill();
+            }
+        };
     }, [text]);
 
     return (

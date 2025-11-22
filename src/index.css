@@ -1,48 +1,44 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: font1;
-  src: url(../fonts/Font1.woff2);
+  font-family: 'font1';
+  src: url('../fonts/Font1.woff2') format('woff2');
+  font-display: swap;
 }
 
 @font-face {
-  font-family: font2;
-  src: url(../fonts/Font2.woff2);
+  font-family: 'font2';
+  src: url('../fonts/Font2.woff2') format('woff2');
+  font-display: swap;
 }
 
 @font-face {
-  font-family: font3;
-  src: url(../fonts/Font3.woff2);
+  font-family: 'font3';
+  src: url('../fonts/Font3.woff2') format('woff2');
+  font-display: swap;
 }
 
 @font-face {
-  font-family: font4;
-  src: url(../fonts/Font4.woff2);
+  font-family: 'font4';
+  src: url('../fonts/Font4.woff2') format('woff2');
+  font-display: swap;
 }
 
-*{
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   cursor: none;
 }
 
-/* body {
+body {
   height: 100%;
   width: 100%;
-  background-image: url('./assets/BGImage.png');
-  background-size: cover;
-  background-position: center;
-} */
-
-
-body{
-  height: 100%;
-  width: 100%;
-  overflow-x: hidden  ;
-  background-color: black;
-  color: white;
+  overflow-x: hidden;
+  background-color: #000;
+  color: #fff;
+  font-family: 'font1', 'font2', 'font3', 'font4', sans-serif;
 }
-
 
 #cursor {
   position: fixed;
@@ -56,39 +52,25 @@ body{
   transform: translate(-50%, -50%);
 }
 
-
-html.has-scroll-smooth {
-  overflow: hidden; 
+/* Ensure sections maintain proper positioning context */
+[data-scroll-section] {
+  position: relative;
 }
 
-html.has-scroll-dragging {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none; 
+/* social hover effect: siblings slide away */
+.social-item {
+  display: inline-block;
+  transition: transform 0.35s ease, opacity 0.25s ease;
 }
 
-.has-scroll-smooth body {
-  overflow: hidden; 
+.social-item:hover ~ .social-item {
+  transform: translateX(12px);
 }
 
-/* Optional: Hide the default scrollbar for a cleaner look */
-.has-scroll-smooth [data-scroll-container] {
-  min-height: 100vh;
+.group:hover .social-item:hover {
+  transform: translateX(0px);
 }
 
-/* Optional: Style the custom scrollbar provided by Locomotive */
-.c-scrollbar {
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 10px;
-  height: 100vh;
-  transform-origin: center right;
-  z-index: 1000;
-}
-.c-scrollbar_thumb {
-  background-color: #555; /* Scrollbar color */
-  border-radius: 10px;
-  margin: 2px;
+.group:hover .social-item:not(:hover) {
+  transform: translateX(-12px);
 }

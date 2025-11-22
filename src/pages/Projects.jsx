@@ -40,32 +40,103 @@ const Projects = () => {
 
   useGSAP(
     () => {
-     
-      gsap.to(textRef.current, {
-        opacity: 1,
-        scrollTrigger: {
-          trigger: textRef.current,
-          start: "top 10%",
-          endTrigger: imagesWrapperRef.current,
-          end: "bottom bottom",
-          scrub: true,
-          pin: true,
-        },
-      });
-
-      // Animate each project image in on scroll
-      gsap.utils.toArray(".project-image").forEach((img) => {
-        gsap.from(img, {
-          opacity: 0,
-          y: 120,
-          duration: 2,
+      // Fix: The textRef stays visible after scroll (doesn't disappear instantly when pin ends)
+      // Animate text container with smooth fade and scale, but don't fade it OUT at end,
+      // so only initial from opacity 0/y/scale => visible, and stays visible after pinning.
+      gsap.fromTo(
+        textRef.current,
+        { opacity: 0, y: 50, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.25,
+          ease: "power2.out",
           scrollTrigger: {
-            trigger: img,
-            start: "top 90%",
-            end: "top 60%",
+            trigger: textRef.current,
+            start: "top 10%",
+            endTrigger: imagesWrapperRef.current,
+            end: "bottom bottom",
             scrub: 1,
+            pin: true,
+            // Do NOT set pinSpacing: false to keep visual order
+            // No toggleActions so it never fades out
           },
-        });
+          // Do not set toggleActions!
+        }
+      );
+
+      // Animate "Featured Projects" text with letter stagger
+      const featuredText = textRef.current?.querySelector(".TopLeft");
+      if (featuredText) {
+        const words = featuredText.querySelectorAll("h1");
+        gsap.fromTo(
+          words,
+          { opacity: 0, y: 30, filter: "blur(5px)" },
+          {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 1.5,
+            ease: "power2.out",
+            stagger: 0.2,
+            scrollTrigger: {
+              trigger: textRef.current,
+              start: "top 20%",
+              end: "top 10%",
+              scrub: 1,
+            },
+          }
+        );
+      }
+
+      // Animate description text
+      const descText = textRef.current?.querySelector(".TopRight");
+      if (descText) {
+        gsap.fromTo(
+          descText,
+          { opacity: 0, x: 50, filter: "blur(5px)" },
+          {
+            opacity: 1,
+            x: 0,
+            filter: "blur(0px)",
+            duration: 1.5,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: textRef.current,
+              start: "top 20%",
+              end: "top 10%",
+              scrub: 1,
+            },
+          }
+        );
+      }
+
+      // Animate each project image in on scroll with smoother animation
+      gsap.utils.toArray(".project-image").forEach((img, index) => {
+        gsap.fromTo(
+          img,
+          {
+            opacity: 0,
+            y: 120,
+            scale: 0.9,
+            filter: "blur(10px)",
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            filter: "blur(0px)",
+            duration: 2,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: img,
+              start: "top 90%",
+              end: "top 60%",
+              scrub: 1,
+            },
+          }
+        );
       });
     },
     { scope: containerRef }
@@ -73,6 +144,7 @@ const Projects = () => {
 
   return (
     <div
+      data-scroll-section
       ref={containerRef}
       className="w-screen min-h-screen relative flex flex-col justify-center items-center"
     >

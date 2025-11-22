@@ -5,7 +5,7 @@ import { NavbarContext } from "../../context/NavContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Navbar = () => {
+const SingleNavBtn = () => {
   const logoRef = useRef(null);
   const iconRef = useRef(null);
   const [navOpen, setNavOpen] = useContext(NavbarContext);
@@ -59,10 +59,10 @@ const Navbar = () => {
         onMouseEnter={e => e.currentTarget.style.transform = 'rotate(90deg)'}
         onMouseLeave={e => e.currentTarget.style.transform = 'rotate(0deg)'}
       >
-        <i className="text-4xl ri-add-large-fill"></i>
+        <i className="text-6xl ri-add-large-fill"></i>
       </div>
     </div>
   );
 };
 
-export default Navbar;
+export default SingleNavBtn;

@@ -17,7 +17,7 @@ const MyInfoTop = () => {
 
     return (
         // Restored original outer container styles
-        <div className="h-screen w-full flex flex-col left-0 justify-center items-center gap-[20px] mx-10">
+        <div data-scroll-section className="h-screen w-full flex flex-col left-0 justify-center items-center gap-[20px] mx-10">
             
             <div 
                 className="w-full text-center leading-15 text-[6.5vh] font-[font4] uppercase tracking-[-0.03em] font-extrabold"
