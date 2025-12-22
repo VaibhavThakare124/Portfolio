@@ -6,7 +6,7 @@ import FullScreenNav from './components/Navigation/FullScreenNav'
 import MyInfo from './pages/MyInfo'
 import ScrollContainer from './hooks/ScrollContainer'
 import Projects from './pages/Projects'
-import Footer from './pages/footer'
+import Footer from './pages/Footer'
 
 const App = () => {
     const [locoScrollReady, setLocoScrollReady] = useState(false)

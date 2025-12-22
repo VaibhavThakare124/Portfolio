@@ -91,14 +91,14 @@ const FooterTop = ({ words, hovered, setHovered }) => {
                 onMouseLeave={() => setHovered("")}
               >
                 {/* Main letter */}
-                <span className="transition-opacity duration-300 [transition-timing-function:ease-out]">
+                <span className="transition-opacity duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]">
                   {letter}
                 </span>
 
                 {/* Smooth inline reveal */}
                 <span
                   className={`
-                    ml-1 inline-block whitespace-nowrap overflow-hidden
+                    ml-1 inline-block whitespace-nowrap overflow-hidden 
                     transition-all duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]
                     ${hovered === letter ? "max-w-[200px] opacity-100" : "max-w-0 opacity-0"}
                   `}
