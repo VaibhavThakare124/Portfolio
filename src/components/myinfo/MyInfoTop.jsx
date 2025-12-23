@@ -17,10 +17,10 @@ const MyInfoTop = () => {
 
     return (
         // Restored original outer container styles
-        <div data-scroll-section className="h-screen w-full flex flex-col left-0 justify-center items-center gap-[20px] mx-10">
+        <div data-scroll-section className="h-screen w-full flex flex-col left-0 justify-center items-center gap-[20px] mx-10 px-4 sm:px-6 md:px-10">
             
             <div 
-                className="w-full text-center leading-15 text-[6.5vh] font-[font4] uppercase tracking-[-0.03em] font-extrabold"
+                className="w-full text-center leading-15 text-[6.5vh] font-[font4] uppercase tracking-[-0.03em] font-extrabold max-sm:text-[8vw] max-sm:leading-tight"
             >
                 <AnimatedLine text={line1} />
                 <AnimatedLine text={line2} />
@@ -30,7 +30,7 @@ const MyInfoTop = () => {
 
             <div>
             
-            <img src={mySign} alt="My Signature" className="w-[12vw] h-[7vw] top-10 mt-50 mx-auto bg-transparent opacity-80" />
+            <img src={mySign} alt="My Signature" className="w-[12vw] h-[7vw] top-10 mt-50 mx-auto bg-transparent opacity-80 max-sm:w-[45vw] max-sm:h-auto max-sm:mt-12" />
             </div>
             
         </div>

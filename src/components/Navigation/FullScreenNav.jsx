@@ -106,7 +106,7 @@ const FullScreenNav = () => {
       className="fixed top-0 left-0 w-screen h-screen bg-[#0d0d0d] z-99"
     >
       {/* Top Bar */}
-      <div className="absolute flex flex-row justify-between items-center top-[30px] left-[50px] right-[50px]">
+      <div className="absolute flex flex-row justify-between items-center top-[30px] left-[50px] right-[50px] max-sm:left-6 max-sm:right-6 sm:left-10 sm:right-10">
         {/* Logo */}
         <div className="text-3xl uppercase items-start flex flex-row font-[font1] font-semibold">
           <span className="text-[#c93b10]">void</span>from
@@ -149,7 +149,7 @@ const FullScreenNav = () => {
       </div>
 
       {/* Navigation Links */}
-      <ul className="flex flex-col absolute object-cover overflow-hidden items-start justify-center h-full gap-5 text-white m-0 p-0 left-40 list-none">
+      <ul className="flex flex-col absolute object-cover overflow-hidden items-start justify-center h-full gap-5 text-white m-0 p-0 left-40 list-none max-sm:left-8 sm:left-16 md:left-24">
         {navigationItems.map((item) => (
           <li
             key={`nav-${item.name}`}
@@ -168,7 +168,7 @@ const FullScreenNav = () => {
       </ul>
 
       {/* Contact Info */}
-      <div className="flex flex-row text-white right-50 bottom-50 absolute gap-30 font-[font4]">
+      <div className="flex flex-row text-white right-50 bottom-50 absolute gap-30 font-[font4] max-sm:flex-col max-sm:right-6 max-sm:bottom-20 sm:right-12 sm:gap-12 md:right-20">
         <div className="flex flex-col">
           <h5 className="text-[2.8vh]">Phone</h5>
           <a href="tel:+919373899825">(+91)9373899825</a>
@@ -180,9 +180,9 @@ const FullScreenNav = () => {
       </div>
 
       {/* Socials */}
-      <div className="flex flex-col bottom-10 uppercase right-10 gap-5 absolute">
-        <h3 className="text-white text-[3vh] font-[font4]">Socials</h3>
-        <div className="flex flex-row gap-15 text-[2.8vh] font-[font4]">
+      <div className="flex flex-col bottom-10 uppercase right-6 sm:right-10 gap-4 sm:gap-5 absolute">
+        <h3 className="text-white text-lg sm:text-xl md:text-[3vh] font-[font4]">Socials</h3>
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 md:gap-15 text-base sm:text-lg md:text-[2.8vh] font-[font4]">
           {/* For smooth animated underline, use group and after pseudo for each link */}
           {[
             {

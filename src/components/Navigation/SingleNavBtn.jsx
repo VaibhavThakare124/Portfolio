@@ -39,7 +39,7 @@ const SingleNavBtn = () => {
   }, []);
 
   return (
-    <div className="absolute top-[40%] left-0 w-full z-10 flex items-center justify-center gap-[175vh] px-20 py-6">
+    <div className="absolute top-[25%] lg:top-[40%] left-37 lg:left-0 w-full z-10 flex items-center justify-center lg:gap-[175vh] gap-[195vh] px-20 py-6">
       {/* Logo section */}
       {/* <div ref={logoRef} className="text-3xl hidden uppercase items-start flex flex-row font-[font1] font-semibold">
         <span className='text-[#c93b10]'>void</span>from
@@ -59,7 +59,7 @@ const SingleNavBtn = () => {
         onMouseEnter={e => e.currentTarget.style.transform = 'rotate(90deg)'}
         onMouseLeave={e => e.currentTarget.style.transform = 'rotate(0deg)'}
       >
-        <i className="text-6xl ri-add-large-fill"></i>
+        <i className="text-3xl lg:text-6xl ri-add-large-fill"></i>
       </div>
     </div>
   );

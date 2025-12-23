@@ -89,10 +89,10 @@ const FooterBottom = ({ logoRef, containerRef }) => {
     <div
       data-scroll-section
       ref={logoRef}
-      className="relative flex flex-col items-center justify-end top-43"
+      className="relative flex flex-col items-center justify-end top-43 px-4 sm:px-6"
     >
       <div
-        className="flex flex-row items-end text-[40vh] font-bold tracking-tighter uppercase font-[font1] text-[#ffffff] relative z-10"
+        className="flex flex-row items-end text-[32vw] sm:text-[28vw] md:text-[40vh] font-bold tracking-tighter uppercase font-[font1] text-[#ffffff] relative z-10 leading-none flex-wrap md:flex-nowrap justify-center"
         style={{
           maskImage:
             "linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%)",
@@ -101,27 +101,27 @@ const FooterBottom = ({ logoRef, containerRef }) => {
         }}
       >
         <div className="flex flex-row items-end">
-          <h1>vo</h1>
+          <h1 className="leading-none">vo</h1>
           <h1
             ref={idCharRef}
-            className="idchar rotate-0 text-[40vh] relative ml-2"
+            className="idchar rotate-0 text-[32vw] sm:text-[28vw] md:text-[40vh] relative ml-2 leading-none"
             style={{ display: "inline-block" }}
           >
             id
           </h1>
         </div>
 
-        <div className="flex flex-row items-end ml-10">
+        <div className="flex flex-row items-end ml-10 max-sm:ml-4">
           <h1
             ref={fCharRef}
-            className="fchar"
+            className="fchar leading-none"
             style={{ display: "inline-block" }}
           >
             f
           </h1>
-          <h1>o</h1>
-          <h1>r</h1>
-          <h1>m</h1>
+          <h1 className="leading-none">o</h1>
+          <h1 className="leading-none">r</h1>
+          <h1 className="leading-none">m</h1>
         </div>
       </div>
     </div>

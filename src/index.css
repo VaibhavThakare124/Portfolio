@@ -57,6 +57,13 @@ body {
   position: relative;
 }
 
+@media (max-width: 768px) {
+  /* Allow native cursor/touch on small screens */
+  * {
+    cursor: auto;
+  }
+}
+
 /* social hover effect: siblings slide away */
 .social-item {
   display: inline-block;

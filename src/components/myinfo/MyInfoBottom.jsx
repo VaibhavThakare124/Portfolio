@@ -4,7 +4,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
 import myImg from '../../assets/myImg1.png';
 import AnimatedLine from '../common/AnimatedLine';
-import { tr } from 'framer-motion/client';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -131,34 +130,30 @@ const MyInfoBottom = () => {
         ref={containerRef} className='w-screen justify-between items-center'>
             
             
-            <div className="top-[10vh] h-full w-screen overflow-hidden flex flex-col gap-[10vh] justify-between items-center relative py-[10vh]">
+            <div className="top-[10vh] h-full w-screen overflow-hidden flex flex-col gap-[10vh] justify-between items-center relative py-[10vh] px-4 sm:px-8">
                 
-                <div className='text-container flex flex-col items-center justify-center uppercase font-extrabold leading-22 pointer-events-none'>
-                    <h1 className='text-[11vh] tracking-[-0.03em] font-[font4]'>Behind the</h1>
-                    <h1 className='text-[20vh] tracking-[-0.03em] font-[font4]'>Screen</h1>
+                <div className='text-container flex flex-col items-center justify-center uppercase font-extrabold leading-22 pointer-events-none text-center gap-2'>
+                    <h1 className='text-[11vh] tracking-[-0.03em] font-[font4] leading-none max-sm:text-[12vw]'>Behind the</h1>
+                    <h1 className='text-[20vh] tracking-[-0.03em] font-[font4] leading-none max-sm:text-[22vw]'>Screen</h1>
                 </div>
 
                 
-                <div className='image-container flex flex-col items-center justify-center w-full relative gap-22'>
-                    <div className='w-[28vw] h-[40vw] rounded-2xl overflow-hidden'>
+                <div className='image-container flex flex-col items-center justify-center w-full relative gap-22 max-sm:gap-16'>
+                    <div className='w-[28vw] h-[40vw] rounded-2xl overflow-hidden max-sm:w-[75vw] max-sm:h-[90vw]'>
                         <img src={myImg} alt="My Image" className="w-full h-full object-cover" />
                     </div>
                     
-                    <div className='info-text-container w-full text-center flex flex-col items-center gap-6 mt-16'>
-                        <div className='text-[4vh] leading-7 font-light flex flex-col font-[font4] uppercase'>
-                            {/* <h1><span className=''>Hey, I’m Vaibhav Thakare</span> — designing within the void</h1>
-                            <h1>where motion, light, and interaction converge. Each line of code is a fragment of</h1>
-                            <h1>form shaped with intent.</h1> */}
-
+                    <div className='info-text-container w-full text-center flex flex-col items-center gap-6 mt-16 max-sm:w-[90%]'>
+                        <div className='text-[4vh] leading-7 font-light flex flex-col font-[font4] uppercase max-sm:text-[4.5vw]'>
                             <AnimatedLine text={line1} />
                             <AnimatedLine text={line2} />
                             <AnimatedLine text={line3} />
                         </div>
-                        <p className='text-lg md:text-xl font-[font4] w-[60%] text-center text-[#808080] font-light leading-6'>
+                        <p className='text-lg md:text-xl font-[font4] w-[60%] text-center text-[#808080] font-light leading-6 max-sm:w-full max-sm:text-base'>
                             I build digital forms that adapt, respond, and evolve — precision-engineered to make interaction feel intuitive, fluid, and human. Every motion and detail reflects a living digital consciousness — designed to flow, react, and evolve beyond static design.
                         </p>
                         <div className='mt-4'>
-                            <button className='bg-white w-[35vh] h-[8vh] text-black px-8 py-3 rounded-full font-extrabold pointer-events-auto hover:bg-opacity-80 transition-colors uppercase font-[font1] text-[3vh] tracking-[-0.03em]'>
+                            <button className='bg-white w-[35vh] h-[8vh] text-black px-8 py-3 rounded-full font-extrabold pointer-events-auto hover:bg-opacity-80 transition-colors uppercase font-[font1] text-[3vh] tracking-[-0.03em] max-sm:w-[70vw] max-sm:h-[7vh] max-sm:text-lg'>
                                 Download Resume
                             </button>
                         </div>

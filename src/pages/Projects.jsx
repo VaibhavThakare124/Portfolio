@@ -150,13 +150,13 @@ const Projects = () => {
     >
       <div
         ref={textRef}
-        className="text-container flex flex-row justify-center gap-[100vh] top-[20vh] items-center px-20 py-10 w-full z-10"
+        className="text-container flex flex-row justify-center gap-[100vh] top-[20vh] items-center px-20 py-10 w-full z-10 max-sm:flex-col max-sm:gap-10 max-sm:px-6"
       >
-        <div className="TopLeft flex flex-col font-[font1] font-bold tracking-[-0.03em] leading-20 text-[13vh]">
+        <div className="TopLeft flex flex-col font-[font1] font-bold tracking-[-0.03em] leading-20 text-[13vh] max-sm:text-[14vw]">
           <h1>Featured</h1>
           <h1>Projects</h1>
         </div>
-        <div className="TopRight font-[font4] font-bold text-[23px] w-[20%] leading-7">
+        <div className="TopRight font-[font4] font-bold text-[23px] w-[20%] leading-7 max-sm:w-full max-sm:text-base max-sm:pr-0">
           <p>
             A selection of websites I've crafted — combining clarity, elegance,
             and thoughtful motion.
@@ -166,13 +166,13 @@ const Projects = () => {
 
       <div
         ref={imagesWrapperRef}
-        className="images-wrapper flex flex-col z-99 gap-30 justify-center items-center w-full px-20 py-10 mt-[40vh]"
+        className="images-wrapper flex flex-col z-99 gap-30 justify-center items-center w-full px-20 py-10 mt-[40vh] max-sm:px-6 max-sm:gap-10"
         style={{ minHeight: "400vh" }}
       >
         {projects.map((project, idx) => (
           <div
             key={idx}
-            className={`project-image rounded-3xl object-cover flex ${project.className}`}
+            className={`project-image rounded-3xl object-cover flex ${project.className} max-sm:w-full max-sm:aspect-[16/9]`}
           >
             <img
               src={project.src}

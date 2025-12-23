@@ -56,20 +56,20 @@ const FooterTop = ({ words, hovered, setHovered }) => {
     <div 
       ref={containerRef}
       data-scroll-section
-      className="relative top-0 flex flex-col items-center justify-center mb-20">
+      className="relative top-0 flex flex-col items-center justify-center mb-20 px-4 sm:px-6">
       {/* Introductory Text */}
       <div className="w-[85vw] tracking-[1px] leading-8 text-center font-extrabold uppercase flex flex-col">
-        <p className="font-[font1] text-[3.9vh]">
+        <p className="font-[font1] text-[3.9vh] leading-relaxed max-sm:text-xl">
           Driven by modern web design and development, I create interfaces that are{" "}
         </p>
-        <p className="font-[font1] text-[3.9vh]">
+        <p className="font-[font1] text-[3.9vh] leading-relaxed max-sm:text-xl">
           accessible, responsive, and seamless — blending creative thinking with solid{" "}
         </p>
-        <p className="font-[font1] text-[3.9vh]">technical fundamentals.</p>
+        <p className="font-[font1] text-[3.9vh] leading-relaxed max-sm:text-xl">technical fundamentals.</p>
       </div>
 
       {/* SOCIAL LINKS — SMOOTH INLINE WORD REVEAL */}
-      <div className="flex flex-row top-10 relative gap-6 text-[23px] uppercase font-extrabold font-[font1]">
+      <div className="flex flex-row top-10 relative gap-6 text-[23px] uppercase font-extrabold font-[font1] max-sm:flex-col max-sm:items-center">
         {Object.keys(words).map((letter, i) => {
           const { word, link } = words[letter];
           const extra = word.slice(1);
