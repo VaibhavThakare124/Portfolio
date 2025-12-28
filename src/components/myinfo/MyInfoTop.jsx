@@ -20,7 +20,7 @@ const MyInfoTop = () => {
         <div data-scroll-section className="h-screen w-full flex flex-col left-0 justify-center items-center gap-[20px] mx-10 px-4 sm:px-6 md:px-10">
             
             <div 
-                className="w-[75%] text-center leading-15 text-[3vh] lg:text-[6.5vh] font-[font4] uppercase tracking-[-0.03em] font-extrabold  max-sm:leading-tight"
+                className="w-[75%] lg:w-[75%] text-center leading-15 text-[3vh] lg:text-[6.5vh] font-[font4] uppercase tracking-[-0.03em] font-extrabold  max-sm:leading-tight"
             >
                 <AnimatedLine text={line1} />
                 {/* <AnimatedLine text={line2} />

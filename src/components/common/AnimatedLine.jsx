@@ -1,70 +1,100 @@
-// AnimatedLine.js
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const AnimatedLine = ({ text }) => {
-    const textRef = useRef(null);
+  const textRef = useRef(null);
+  const mm = useRef(null);
+  const tween = useRef(null);
+  const originalHTML = useRef("");
 
-    useEffect(() => {
-        const textElement = textRef.current;
-        if (!textElement) return;
+  useEffect(() => {
+    const el = textRef.current;
+    if (!el) return;
 
-        // 1. Split text into words first
-        const words = text.split(" ");
+    // Save original content
+    originalHTML.current = el.innerHTML;
 
-        // 2. Build HTML: Wrap words in a span that prevents breaking, then wrap chars inside
-        textElement.innerHTML = words.map(word => {
-            const chars = word.split('').map(char => 
-                `<span class="char" style="display:inline-block; color: #666666; opacity: 0.6; filter: blur(1.5px); transform: translateY(20px);">${char}</span>`
-            ).join('');
-            
-            // Wrap the word to keep it together. 
-            // We add a trailing space ( ) to ensure spacing between words works naturally.
-            return `<span class="word" style="display:inline-block; white-space:nowrap;">${chars}</span>`;
-        }).join(' '); // Join words with a real space for natural flow
+    // Build split markup
+    const words = text.split(" ");
+    el.innerHTML = words
+      .map(word => {
+        const chars = word
+          .split("")
+          .map(
+            char =>
+              `<span class="char" style="display:inline-block; opacity:0.6; transform:translateY(20px)">${char}</span>`
+          )
+          .join("");
+        return `<span class="word" style="display:inline-block; white-space:nowrap;">${chars}</span>`;
+      })
+      .join(" ");
 
-        // 3. Select ONLY the characters (not the word wrappers)
-        const chars = textElement.querySelectorAll('.char');
+    const chars = el.querySelectorAll(".char");
 
-        const animation = gsap.to(chars, {
-            scrollTrigger: {
-                trigger: textElement,
-                start: "top 80%",
-                end: "bottom 70%",
-                scrub: 1.5,
-            },
-            color: "#ffffff",
-            opacity: 1,
-            filter: "blur(0px)",
-            y: 0,
-            stagger: {
-                each: 0.02,
-                ease: "power2.out",
-            },
-            duration: 1.5,
-            ease: "power3.out",
+    // MatchMedia reference
+    mm.current = ScrollTrigger.matchMedia({
+
+      
+      "(min-width: 769px)": () => {
+        tween.current = gsap.to(chars, {
+          color: "#ffffff",
+          opacity: 1,
+          y: 0,
+          stagger: 0.02,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 80%",
+            end: "bottom 70%",
+            scrub: 1.2,
+          },
         });
+      },
 
-        textElement._gsapAnimation = animation;
+      
+      "(max-width: 768px)": () => {
+        tween.current = gsap.to(chars, {
+          color: "#ffffff",
+          opacity: 1,
+          y: 0,
+          stagger: 0.03,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 90%",
+            once: true, 
+          },
+        });
+      },
+    });
 
-        return () => {
-            if (textElement._gsapAnimation?.scrollTrigger) {
-                textElement._gsapAnimation.scrollTrigger.kill();
-            }
-        };
-    }, [text]);
+    return () => {
+      // Kill tween
+      if (tween.current) {
+        tween.current.kill();
+        tween.current = null;
+      }
 
-    return (
-        <div ref={textRef} className="text-[#666666] leading-tight">
-            {/* We use a div here instead of span to ensure block behavior 
-               which handles word-wrapping better in responsive layouts 
-            */}
-            {text}
-        </div>
-    );
+      // Kill matchMedia
+      if (mm.current) {
+        mm.current.kill();
+        mm.current = null;
+      }
+
+      // Restore original text
+      el.innerHTML = originalHTML.current;
+    };
+  }, [text]);
+
+  return (
+    <div ref={textRef} className="text-[#666666] leading-tight">
+      {text}
+    </div>
+  );
 };
 
 export default AnimatedLine;
