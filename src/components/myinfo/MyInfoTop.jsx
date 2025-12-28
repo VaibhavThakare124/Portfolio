@@ -10,22 +10,22 @@ gsap.registerPlugin(ScrollTrigger);
 
 const MyInfoTop = () => {
     // The full paragraph, logically split into three lines
-    const line1 = "Shaping digital interfaces where design and code converge";
-    const line2 = "Precise, adaptive, and born from the void.";
-    const line3 = "Each interaction a pulse of light Redefining the";
-    const line4 = "digital experience.";
+    const line1 = "Shaping digital interfaces where design and code converge Precise, adaptive, and born from the void. Each interaction a pulse of light Redefining the digital experience.";
+    // const line2 = "Precise, adaptive, and born from the void.";
+    // const line3 = "Each interaction a pulse of light Redefining the";
+    // const line4 = "digital experience.";
 
     return (
         // Restored original outer container styles
         <div data-scroll-section className="h-screen w-full flex flex-col left-0 justify-center items-center gap-[20px] mx-10 px-4 sm:px-6 md:px-10">
             
             <div 
-                className="w-full text-center leading-15 text-[6.5vh] font-[font4] uppercase tracking-[-0.03em] font-extrabold max-sm:text-[8vw] max-sm:leading-tight"
+                className="w-[75%] text-center leading-15 text-[3vh] lg:text-[6.5vh] font-[font4] uppercase tracking-[-0.03em] font-extrabold  max-sm:leading-tight"
             >
                 <AnimatedLine text={line1} />
-                <AnimatedLine text={line2} />
+                {/* <AnimatedLine text={line2} />
                 <AnimatedLine text={line3} />
-                <AnimatedLine text={line4} />
+                <AnimatedLine text={line4} /> */}
             </div>
 
             <div>

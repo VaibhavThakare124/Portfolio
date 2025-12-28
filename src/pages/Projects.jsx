@@ -12,22 +12,22 @@ const projects = [
   {
     src: ProjectImg1,
     alt: "Solar System project",
-    className: "w-[63vh] h-[35vh]",
+    className: "w-[45vh] lg:w-[63vh] h-[25vh] lg:h-[35vh]",
   },
   {
     src: ProjectImg2,
     alt: "ThirtySix project",
-    className: "relative left-[30%] w-[63vh] h-[35vh]",
+    className: "relative left-0 lg:left-[30%] w-[45vh] lg:w-[63vh] h-[25vh] lg:h-[35vh]",
   },
   {
     src: ProjectImg3,
     alt: "ToGoodco project",
-    className: "relative right-[30%] w-[63vh] h-[35vh]",
+    className: "relative right-0 lg:right-[30%] w-[45vh] lg:w-[63vh] h-[25vh] lg:h-[35vh]",
   },
   {
     src: ProjectImg4,
     alt: "Zajno project",
-    className: "relative left-[15%] w-[63vh] h-[35vh]",
+    className: "relative left-0 lg:left-[15%] w-[45vh] lg:w-[63vh] h-[25vh] lg:h-[35vh]",
   },
 ];
 
@@ -150,13 +150,13 @@ const Projects = () => {
     >
       <div
         ref={textRef}
-        className="text-container flex flex-row justify-center gap-[100vh] top-[20vh] items-center px-20 py-10 w-full z-10 max-sm:flex-col max-sm:gap-10 max-sm:px-6"
+        className="text-container flex flex-row justify-center gap-[100vh] top-[30vh] lg:top-[20vh] items-center px-20 py-10 w-full z-10 max-sm:flex-col max-sm:gap-10 max-sm:px-6"
       >
-        <div className="TopLeft flex flex-col font-[font1] font-bold tracking-[-0.03em] leading-20 text-[13vh] max-sm:text-[14vw]">
+        <div className="TopLeft flex flex-col font-[font1] font-bold tracking-[-0.03em] leading-12 lg:leading-20 text-[13vh] max-sm:text-[14vw]">
           <h1>Featured</h1>
           <h1>Projects</h1>
         </div>
-        <div className="TopRight font-[font4] font-bold text-[23px] w-[20%] leading-7 max-sm:w-full max-sm:text-base max-sm:pr-0">
+        <div className="TopRight font-[font4] font-bold text-[15px] lg:text-[23px] w-[75%] lg:w-[20%] leading-7   max-sm:pr-0">
           <p>
             A selection of websites I've crafted — combining clarity, elegance,
             and thoughtful motion.
@@ -172,7 +172,7 @@ const Projects = () => {
         {projects.map((project, idx) => (
           <div
             key={idx}
-            className={`project-image rounded-3xl object-cover flex ${project.className} max-sm:w-full max-sm:aspect-[16/9]`}
+            className={`project-image rounded-3xl object-cover flex ${project.className}  `}
           >
             <img
               src={project.src}

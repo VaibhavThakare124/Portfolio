@@ -40,41 +40,98 @@ const MyInfoBottom = () => {
             );
 
             // Pin and scale animation
-            gsap.to(textContainer, {
-                scale: 0.8,    
-                yPercent: -20, 
-                scrollTrigger: {
-                    trigger: textContainer,
-                    start: 'top 15%', 
-                    end: 'bottom top',
-                    scrub: 1.5,      
-                    pin: true,
-                }
-            });
+            ScrollTrigger.matchMedia({
+
+                
+                "(min-width: 769px)": () => {
+                  gsap.to(textContainer, {
+                    scale: 0.8,
+                    yPercent: -20,
+                    ease: "none",
+                    scrollTrigger: {
+                      trigger: textContainer,
+                      start: "top 15%",
+                      end: "bottom top",
+                      scrub: 1.5,
+                      pin: true,
+                      anticipatePin: 1,
+                      // markers: true,
+                    },
+                  });
+                },
+              
+                
+                "(max-width: 768px)": () => {
+                  gsap.to(textContainer, {
+                    yPercent: -8,          
+                    ease: "none",
+                    scrollTrigger: {
+                      trigger: textContainer,
+                      start: "top 50%",
+                      end: "+=200",        
+                      scrub: 0.5,
+                      pin: true,
+                      anticipatePin: 1,
+                      pinSpacing: true,
+                    //   markers: true,
+                    },
+                  });
+                },
+              
+              });
+              
         }
 
         // Animate image container with smoother effect
-        gsap.fromTo('.image-container', 
-            { 
-                y: 200,      
-                opacity: 0,
-                scale: 0.95,
-                filter: "blur(10px)"
+        ScrollTrigger.matchMedia({
+            "(min-width: 769px)": () => {
+                gsap.fromTo('.image-container', 
+                    { 
+                        y: 200,      
+                        opacity: 0,
+                        scale: 0.95,
+                        filter: "blur(10px)"
+                    },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        scale: 1,
+                        filter: "blur(0px)",
+                        scrollTrigger: {
+                            trigger: '.image-container',
+                            start: 'top 85%', 
+                            end: 'top 50%',   
+                            scrub: 1.5,     
+                           
+                        }
+                    }
+                );
             },
-            {
-                y: 0,
-                opacity: 1,
-                scale: 1,
-                filter: "blur(0px)",
-                scrollTrigger: {
-                    trigger: '.image-container',
-                    start: 'top 85%', 
-                    end: 'top 50%',   
-                    scrub: 1.5,     
-                   
-                }
+            "(max-width: 768px)": () => {
+                gsap.fromTo('.image-container', 
+                    { 
+                        // y: 100,      
+                        // opacity: 1,
+                        // scale: 0.95,
+                        // filter: "blur(10px)"
+                    },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        scale: 1,
+                        filter: "blur(0px)",
+                        scrollTrigger: {
+                            trigger: '.image-container',
+                            start: 'top 20%', 
+                            end: 'top 40%',   
+                            scrub: 1.5,     
+                            // markers: true,
+                        }
+                    }
+                );
             }
-        );
+        })
+        
 
         // Animate info text and button
         const infoText = containerRef.current?.querySelector('.info-text-container');
@@ -103,22 +160,48 @@ const MyInfoBottom = () => {
             }
 
             if (button) {
-                gsap.fromTo(button,
-                    { opacity: 0, scale: 0.8, y: 20 },
-                    {
-                        opacity: 1,
-                        scale: 1,
-                        y: 0,
-                        duration: 1,
-                        ease: "back.out(1.7)",
-                        scrollTrigger: {
-                            trigger: button,
-                            start: 'top 90%',
-                            end: 'top 80%',
-                            scrub: 1,
-                        }
+                ScrollTrigger.matchMedia({
+                    "(min-width: 769px)": () => {
+                        gsap.fromTo(button,
+                            { opacity: 0, scale: 0.8, y: 20 },
+                            {
+                                opacity: 1,
+                                scale: 1,
+                                y: 0,
+                                duration: 1,
+                                ease: "back.out(1.7)",
+                                scrollTrigger: {
+                                    trigger: button,
+                                    start: 'top 90%',
+                                    end: 'top 80%',
+                                    scrub: 1,
+                                }
+                            }
+                        );
+                    },
+
+                    "(max-width: 768px)": () => {
+                        gsap.fromTo(button,
+                            { opacity: 0, scale: 0.8, y: 20 },
+                            {
+                                opacity: 1,
+                                scale: 1,
+                                y: 0,
+                                duration: 1,
+                                ease: "back.out(1.7)",
+                                scrollTrigger: {
+                                    trigger: button,
+                                    start: 'top 99%',
+                                    end: 'top 95%',
+                                    scrub: 1,
+                                    // markers: true,
+                                }
+                            }
+                        );
                     }
-                );
+
+                });
+                
             }
         }
     }, { scope: containerRef });
@@ -130,11 +213,11 @@ const MyInfoBottom = () => {
         ref={containerRef} className='w-screen justify-between items-center'>
             
             
-            <div className="top-[10vh] h-full w-screen overflow-hidden flex flex-col gap-[10vh] justify-between items-center relative py-[10vh] px-4 sm:px-8">
+            <div className="top-[10vh] h-full w-screen overflow-hidden flex flex-col gap-[5vh] justify-between items-center relative py-[10vh] px-4 sm:px-8">
                 
-                <div className='text-container flex flex-col items-center justify-center uppercase font-extrabold leading-22 pointer-events-none text-center gap-2'>
-                    <h1 className='text-[11vh] tracking-[-0.03em] font-[font4] leading-none max-sm:text-[12vw]'>Behind the</h1>
-                    <h1 className='text-[20vh] tracking-[-0.03em] font-[font4] leading-none max-sm:text-[22vw]'>Screen</h1>
+                <div className='text-container flex flex-col items-center justify-center uppercase font-extrabold leading-10 pointer-events-none text-center gap-1'>
+                    <h1 className='text-[5vh] lg:text-[11vh] tracking-[-0.03em] font-[font4] leading-none '>Behind the</h1>
+                    <h1 className='text-[10vh] lg:text-[20vh] tracking-[-0.03em] font-[font4] leading-none '>Screen</h1>
                 </div>
 
                 

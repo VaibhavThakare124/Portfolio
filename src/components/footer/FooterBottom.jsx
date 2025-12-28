@@ -2,21 +2,17 @@ import React, { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// Ensure plugin registered only once
-if (!gsap.core.globals().ScrollTrigger) {
-  gsap.registerPlugin(ScrollTrigger);
-}
+gsap.registerPlugin(ScrollTrigger);
 
-const FooterBottom = ({ logoRef, containerRef }) => {
-  // Use local refs for animation targets
+const FooterBottom = ({ logoRef }) => {
   const idCharRef = useRef(null);
   const fCharRef = useRef(null);
 
   useLayoutEffect(() => {
     if (!logoRef.current || !idCharRef.current || !fCharRef.current) return;
 
-    // Fade and move in the whole logo with smoother animation
-    const fadeTween = gsap.fromTo(
+    
+    gsap.fromTo(
       logoRef.current,
       { opacity: 0, y: 120, scale: 0.9, filter: "blur(10px)" },
       {
@@ -30,14 +26,14 @@ const FooterBottom = ({ logoRef, containerRef }) => {
         scrollTrigger: {
           trigger: logoRef.current,
           start: "top 90%",
-          end: "top 75%",
-          scrub: 1.5
+          end: "top 85%",
+          scrub: 1.5,
         }
       }
     );
 
-    // Animate the "id" rotation as you scroll in with smoother easing
-    const idTween = gsap.fromTo(
+    
+    gsap.fromTo(
       idCharRef.current,
       { rotation: 0, scale: 0.8 },
       {
@@ -48,51 +44,90 @@ const FooterBottom = ({ logoRef, containerRef }) => {
         scrollTrigger: {
           trigger: logoRef.current,
           start: "top 90%",
-          end: "top 75%",
-          scrub: 1.5
+          end: "top 85%",
+          scrub: 1.5,
         }
       }
     );
 
-    // Animate the "f" letter using scroll position
-    const fCharST = ScrollTrigger.create({
-      trigger: fCharRef.current,
-      start: "top 85%",
-      end: "top 75%",
-      scrub: true,
-      onLeave: () => {
-        // animate out when leaving
-        gsap.to(fCharRef.current, {
-          rotation: 20,
-          duration: 1.2,
-          ease: "bounce.out"
+    
+    ScrollTrigger.matchMedia({
+      "(min-width: 769px)": () => {
+        const fCharST = ScrollTrigger.create({
+          trigger: logoRef.current,
+          start: "top 90%",
+          end: "top 86.5%",
+          scrub: true,
+          onLeave: () => {
+            gsap.to(fCharRef.current, {
+              rotation: 20,
+              duration: 1.2,
+              ease: "bounce.out",
+            });
+          },
+          onEnterBack: () => {
+            gsap.to(fCharRef.current, {
+              rotation: 0,
+              duration: 1.2,
+              ease: "bounce.inOut",
+            });
+          },
         });
+
+        return () => {
+          fCharST.kill();
+        };
       },
-      onEnterBack: () => {
-        // animate back as you scroll back up
-        gsap.to(fCharRef.current, {
-          rotation: 0,
-          duration: 1.2,
-          ease: "bounce.inOut"
+
+      "(max-width: 768px)": () => {
+        const fCharST = ScrollTrigger.create({
+          trigger: logoRef.current,
+          start: "top 85%",
+          end: "top 80%",
+          scrub: true,
+          onLeave: () => {
+            gsap.to(fCharRef.current, {
+              rotation: 20,
+              duration: 1.2,
+              ease: "bounce.out",
+            });
+          },
+          onEnterBack: () => {
+            gsap.to(fCharRef.current, {
+              rotation: 0,
+              duration: 1.2,
+              ease: "bounce.inOut",
+            });
+          },
         });
+
+        return () => {
+          fCharST.kill();
+        };
       }
     });
+    
 
-    return () => {
-      if (fadeTween) fadeTween.kill();
-      if (idTween) idTween.kill();
-      if (fCharST && fCharST.kill) fCharST.kill();
-    };
-  }, [logoRef, containerRef]);
+    
+  }, []);
 
   return (
     <div
-      data-scroll-section
       ref={logoRef}
-      className="relative flex flex-col items-center justify-end top-43 px-4 sm:px-6"
+      className="relative flex flex-col items-center justify-end px-4 top-13 lg:top-43"
     >
       <div
-        className="flex flex-row items-end text-[32vw] sm:text-[28vw] md:text-[40vh] font-bold tracking-tighter uppercase font-[font1] text-[#ffffff] relative z-10 leading-none flex-wrap md:flex-nowrap justify-center"
+        className="
+          flex flex-row lg:flex-row
+          items-center lg:items-center
+          text-[9vh] lg:text-[40vh]
+          font-bold
+          tracking-tighter
+          uppercase
+          font-[font1]
+          text-white
+          leading-none
+        "
         style={{
           maskImage:
             "linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%)",
@@ -100,28 +135,26 @@ const FooterBottom = ({ logoRef, containerRef }) => {
             "linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%)",
         }}
       >
-        <div className="flex flex-row items-end">
+        {/* VOID */}
+        <div className="flex items-end">
           <h1 className="leading-none">vo</h1>
           <h1
             ref={idCharRef}
-            className="idchar rotate-0 text-[32vw] sm:text-[28vw] md:text-[40vh] relative ml-2 leading-none"
-            style={{ display: "inline-block" }}
+            className="ml-2 leading-none inline-block"
           >
             id
           </h1>
         </div>
 
-        <div className="flex flex-row items-end ml-10 max-sm:ml-4">
+        {/* FORM */}
+        <div className="flex items-end mt-4 lg:mt-0 lg:ml-10">
           <h1
             ref={fCharRef}
-            className="fchar leading-none"
-            style={{ display: "inline-block" }}
+            className="leading-none inline-block"
           >
             f
           </h1>
-          <h1 className="leading-none">o</h1>
-          <h1 className="leading-none">r</h1>
-          <h1 className="leading-none">m</h1>
+          <h1 className="leading-none">orm</h1>
         </div>
       </div>
     </div>

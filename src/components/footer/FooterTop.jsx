@@ -59,17 +59,17 @@ const FooterTop = ({ words, hovered, setHovered }) => {
       className="relative top-0 flex flex-col items-center justify-center mb-20 px-4 sm:px-6">
       {/* Introductory Text */}
       <div className="w-[85vw] tracking-[1px] leading-8 text-center font-extrabold uppercase flex flex-col">
-        <p className="font-[font1] text-[3.9vh] leading-relaxed max-sm:text-xl">
-          Driven by modern web design and development, I create interfaces that are{" "}
+        <p className="font-[font1] text-[16px] lg:text-[3.9vh] leading-relaxed ">
+          Driven by modern web design and development, I create interfaces that are accessible, responsive, and seamless — blending creative thinking with solid technical fundamentals.
         </p>
-        <p className="font-[font1] text-[3.9vh] leading-relaxed max-sm:text-xl">
+        {/* <p className="font-[font1] text-[3.9vh] leading-relaxed max-sm:text-xl">
           accessible, responsive, and seamless — blending creative thinking with solid{" "}
         </p>
-        <p className="font-[font1] text-[3.9vh] leading-relaxed max-sm:text-xl">technical fundamentals.</p>
+        <p className="font-[font1] text-[3.9vh] leading-relaxed max-sm:text-xl">technical fundamentals.</p> */}
       </div>
 
       {/* SOCIAL LINKS — SMOOTH INLINE WORD REVEAL */}
-      <div className="flex flex-row top-10 relative gap-6 text-[23px] uppercase font-extrabold font-[font1] max-sm:flex-col max-sm:items-center">
+      <div className="flex flex-col lg:flex-row top-10 relative gap-6 text-[18px] lg:text-[23px] uppercase font-extrabold font-[font1]  lg:items-center items-center lg:left-0 left-30 ">
         {Object.keys(words).map((letter, i) => {
           const { word, link } = words[letter];
           const extra = word.slice(1);

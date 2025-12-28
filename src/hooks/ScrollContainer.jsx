@@ -1,100 +1,89 @@
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Lenis from 'lenis';
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Lenis from "lenis";
 
-// Register GSAP plugin exactly once
-if (!gsap.core.globals().ScrollTrigger) {
-    gsap.registerPlugin(ScrollTrigger);
-}
+gsap.registerPlugin(ScrollTrigger);
 
 const ScrollContainer = ({ children, start }) => {
-    const containerRef = useRef(null);
-    const lenisRef = useRef(null);
-    const rafRef = useRef(null);
+  const lenisRef = useRef(null);
+  const rafRef = useRef(null);
 
-    useEffect(() => {
-        if (!start) return;
+  useEffect(() => {
+    if (!start) return;
 
-        // Initialize Lenis for smooth scrolling
-        const lenis = new Lenis({
-            duration: 1.2, // Smooth scroll duration
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Easing function
-            orientation: 'vertical',
-            gestureOrientation: 'vertical',
-            smoothWheel: true,
-            wheelMultiplier: 0.5, // Slower scroll speed for smooth feel
-            smoothTouch: false, // Disable on touch devices for better performance
-            touchMultiplier: 2,
-        });
+    const isMobileViewport = window.innerWidth <= 768;
 
-        lenisRef.current = lenis;
+    // 👉 MOBILE / SMALL VIEWPORT: native scroll ONLY
+    if (isMobileViewport) {
+      ScrollTrigger.refresh();
+      return;
+    }
 
-        // Integrate Lenis with GSAP ScrollTrigger
-        lenis.on('scroll', ScrollTrigger.update);
+    // 👉 DESKTOP: enable Lenis
+    const lenis = new Lenis({
+      duration: 0.8,                 // responsive, not cinematic
+      easing: (t) => 1 - Math.pow(1 - t, 3),
+      smoothWheel: true,
+      wheelMultiplier: 1,             // DO NOT slow scroll
+    });
 
-        // Add Lenis's raf to GSAP's ticker for synchronization
-        const raf = (time) => {
-            lenis.raf(time * 1000);
+    lenisRef.current = lenis;
+
+    // Sync Lenis with GSAP
+    const raf = (time) => {
+      lenis.raf(time * 1000);
+    };
+
+    rafRef.current = raf;
+    gsap.ticker.add(raf);
+
+    ScrollTrigger.scrollerProxy(document.body, {
+      scrollTop(value) {
+        return arguments.length
+          ? lenis.scrollTo(value, { immediate: true })
+          : lenis.scroll.instance.scroll.y;
+      },
+      getBoundingClientRect() {
+        return {
+          top: 0,
+          left: 0,
+          width: window.innerWidth,
+          height: window.innerHeight,
         };
-        rafRef.current = raf;
-        gsap.ticker.add(raf);
+      },
+    });
 
-        // Disable GSAP's lag smoothing for better sync
-        gsap.ticker.lagSmoothing(0);
+    ScrollTrigger.addEventListener("refresh", () => lenis.resize());
+    ScrollTrigger.refresh();
 
-        // Refresh ScrollTrigger when images load
-        const updateScrollOnLoad = () => {
-            ScrollTrigger.refresh();
-            lenis.resize();
-        };
+    // Resize handler (throttled by browser, not spammy)
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        gsap.ticker.remove(raf);
+        lenis.destroy();
+        ScrollTrigger.refresh();
+      } else {
+        ScrollTrigger.refresh();
+        lenis.resize();
+      }
+    };
 
-        const images = document.querySelectorAll('img');
-        images.forEach(img => {
-            if (img.complete) {
-                updateScrollOnLoad();
-            } else {
-                img.addEventListener('load', updateScrollOnLoad, { once: true });
-            }
-        });
+    window.addEventListener("resize", handleResize);
 
-        // Initial refresh after content is loaded
-        const initTimeout = setTimeout(() => {
-            ScrollTrigger.refresh();
-            lenis.resize();
-        }, 100);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      gsap.ticker.remove(raf);
+      lenis.destroy();
+      ScrollTrigger.kill();
+    };
+  }, [start]);
 
-        // Handle window resize
-        const handleResize = () => {
-            ScrollTrigger.refresh();
-            lenis.resize();
-        };
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            clearTimeout(initTimeout);
-            window.removeEventListener('resize', handleResize);
-            images.forEach(img => {
-                img.removeEventListener('load', updateScrollOnLoad);
-            });
-
-            // Remove Lenis raf from GSAP ticker
-            if (rafRef.current) {
-                gsap.ticker.remove(rafRef.current);
-            }
-
-            // Cleanup Lenis
-            if (lenisRef.current) {
-                lenisRef.current.destroy();
-            }
-        };
-    }, [start]);
-
-    return (
-        <main ref={containerRef} id="main-container" style={{width: '100%', minHeight: '100vh'}}>
-            {children}
-        </main>
-    );
+  return (
+    <main style={{ width: "100%", minHeight: "100vh" }}>
+      {children}
+    </main>
+  );
 };
 
 export default ScrollContainer;
