@@ -56,7 +56,7 @@ const FooterTop = ({ words, hovered, setHovered }) => {
     <div 
       ref={containerRef}
       data-scroll-section
-      className="relative lg:top-0 top-5 flex flex-col items-center justify-center mb-20 px-4 sm:px-6">
+      className="relative top-0 flex flex-col items-center justify-center mb-20 px-4 sm:px-6">
       {/* Introductory Text */}
       <div className="w-[85vw] tracking-[1px] leading-8 text-center font-extrabold uppercase flex flex-col">
         <p className="font-[font1] text-[16px] lg:text-[3.9vh] leading-relaxed ">

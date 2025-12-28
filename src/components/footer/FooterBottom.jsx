@@ -114,7 +114,7 @@ const FooterBottom = ({ logoRef }) => {
   return (
     <div
       ref={logoRef}
-      className="relative flex flex-col items-center justify-end px-4 top-20 lg:top-43"
+      className="relative flex flex-col items-center justify-end px-4 top-13 lg:top-43"
     >
       <div
         className="
