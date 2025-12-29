@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SingleNavBtn from '../components/Navigation/SingleNavBtn';
+import Navbar from '../components/Navigation/Navbar';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -162,6 +163,8 @@ const Home = () => {
       <div className="absolute top-35 left-[135vh] z-50 max-sm:static max-sm:self-end">
         <SingleNavBtn />
       </div>
+
+      
 
       <div className="relative flex flex-col items-start justify-center top-2 w-full z-10 gap-10 max-sm:items-center max-sm:text-center">
         <div className="h-[32vh] relative w-screen flex flex-col items-center justify-center text-center">
