@@ -9,9 +9,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 const MyInfoBottom = () => {
 
-    const line1 = "Hey, I’m Vaibhav Thakare — designing within the void";
-    const line2 = "where motion, light, and interaction converge. Each line of code is a fragment of";
-    const line3 = "form shaped with intent.";
+    const line1 = "Hey, I’m Vaibhav Thakare — an architect of the digital void. I bridge the gap between static design and kinetic code, crafting immersive interfaces shaped by motion and intent.";
+    // const line2 = "where motion, light, and interaction converge. Each line of code is a fragment of";
+    // const line3 = "form shaped with intent.";
 
     const containerRef = useRef(null);
 
@@ -227,10 +227,10 @@ const MyInfoBottom = () => {
                     </div>
                     
                     <div className='info-text-container w-full text-center flex flex-col items-center gap-6 mt-16 max-sm:w-[90%]'>
-                        <div className='text-[4vh] leading-7 font-light flex flex-col font-[font4] uppercase max-sm:text-[4.5vw]'>
+                        <div className='text-[4vh] w-[74%] leading-7 font-light flex flex-col font-[font4] uppercase max-sm:text-[4.5vw]'>
                             <AnimatedLine text={line1} />
-                            <AnimatedLine text={line2} />
-                            <AnimatedLine text={line3} />
+                            {/* <AnimatedLine text={line2} />
+                            <AnimatedLine text={line3} /> */}
                         </div>
                         <p className='text-lg md:text-xl font-[font4] w-[60%] text-center text-[#808080] font-light leading-6 max-sm:w-full max-sm:text-base'>
                             I build digital forms that adapt, respond, and evolve — precision-engineered to make interaction feel intuitive, fluid, and human. Every motion and detail reflects a living digital consciousness — designed to flow, react, and evolve beyond static design.

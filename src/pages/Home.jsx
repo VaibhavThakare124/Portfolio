@@ -70,6 +70,7 @@ const Home = () => {
           gsap.to(fCharRef.current, {
             rotation: 20,
             duration: 1.2,
+            delay: 4,
             ease: "bounce.out",
           });
         },
@@ -160,17 +161,17 @@ const Home = () => {
       data-scroll-section
       className="h-screen w-screen mx-10 py-1 relative overflow-hidden px-4 sm:px-6 md:px-10"
     >
-      <div className="absolute top-35 left-[135vh] z-50 max-sm:static max-sm:self-end">
+      <div className="absolute top-78 left-[134.5vh] z-50 max-sm:static max-sm:self-end">
         <SingleNavBtn />
       </div>
 
       
 
       <div className="relative flex flex-col items-start justify-center top-2 w-full z-10 gap-10 max-sm:items-center max-sm:text-center">
-        <div className="h-[32vh] relative w-screen flex flex-col items-center justify-center text-center">
+        <div className="h-[32vh] absolute top-45 w-screen flex flex-col items-center justify-center text-center">
           <div
             className="
-            flex flex-wrap lg:flex-wrap
+            flex flex-wrap lg:flex-wrap 
             justify-center lg:justify-center
             items-center
             lg:text-[18vw] 
@@ -214,16 +215,30 @@ const Home = () => {
           </div>
         </div>
 
+
+
+
         <div
-          ref={paragraphRef}
-          className="relative top-20 w-[35%] left-25 z-40 max-sm:w-[90%] max-sm:left-0 max-sm:top-10 max-sm:text-center"
+        ref={paragraphRef}
+        className="relative top-115 w-[35%] left-125 text-center z-40 max-sm:w-[90%] max-sm:left-0 max-sm:top-10 max-sm:text-center"
+      >
+        <p 
+          className="text-[#e0dbdb] text-center text-[20px] font-[font2] max-sm:text-base max-sm:text-center 
+                    drop-shadow-[1px_1px_0px_rgba(0,0,0,0.5)]"
         >
-          <p className="text-[#e0dbdb] text-[20px] font-[font2] text-left max-sm:text-base max-sm:text-center">
-            Designed & Developed by{" "}
-            <span className="font-bold">VAIBHAV THAKARE</span> — Blending
-            design, code, and motion into intuitive experiences.
-          </p>
-        </div>
+          Designed & Developed by{" "}
+          <span className="
+            font-bold text-zinc-200
+            
+          ">
+            VAIBHAV THAKARE
+          </span> 
+          {" "}— Blending design, code, and motion into intuitive experiences.
+        </p>
+      </div>
+
+
+
       </div>
 
       <div
